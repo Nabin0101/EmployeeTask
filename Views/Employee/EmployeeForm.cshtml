@@ -1,0 +1,148 @@
+﻿@model EmployeeTask.Models.EmployeeFormViewModel
+@{
+    ViewData["Title"] = "Add Employee";
+}
+
+<style>
+    body {
+        background-color: #e3f2fd;
+    }
+
+    .signup-container {
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        max-width: 900px;
+        margin: 50px auto;
+    }
+
+    .signup-image {
+        background: url('https://img.freepik.com/free-vector/sign-up-concept-illustration_114360-7885.jpg?t=st=1721371851~exp=1721375451~hmac=e4b10536d6876618e1570aceaef0c2b837297fa5e1b724b2e0401dc81d8f3fea&w=740') no-repeat center center;
+        background-size: cover;
+    }
+
+    .signup-form {
+        padding: 30px;
+    }
+
+        .signup-form h2 {
+            margin-bottom: 20px;
+        }
+
+    .form-floating > .form-control,
+    .form-floating > .form-select {
+        border-radius: 0.5rem;
+    }
+
+    .custom-checkbox {
+        margin-bottom: 10px;
+    }
+
+    .btn-primary {
+        background-color: #4956ac;
+        border-color: #4956ac;
+    }
+</style>
+
+<div class="container signup-container d-flex flex-row">
+    <div class="col-md-6 signup-image d-none d-md-block"></div>
+    <div class="col-md-6 signup-form">
+        <h2 class="text-center">Sign up</h2>
+        <form asp-action="EmployeeForm" method="post">
+            <div class="row mb-3">
+                <div class="col">
+                    <div class="form-floating">
+                        <input type="text" class="form-control" id="firstName" name="FirstName" placeholder="First Name" required>
+                        <label for="firstName">First Name</label>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-floating">
+                        <input type="text" class="form-control" id="middleName" name="MiddleName" placeholder="Middle Name" required>
+                        <label for="middleName">Middle Name</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col">
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="lastName" name="LastName" placeholder="LastName" required>
+                    <label for="lastName">Last Name</label>
+                </div>
+                </div>
+                <div class="col">
+                    <div class="form-floating">
+                        <input type="text" class="form-control" id="address" name="Address" placeholder="Address" required>
+                        <label for="address">Address</label>
+                    </div>
+                </div>
+            </div>
+            <div class="mb-3">
+                <div class="form-floating">
+                    <input type="email" class="form-control" id="email" name="Email" placeholder="Email" required>
+                    <label for="email">Email</label>
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col">
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="salary" name="Salary" placeholder="Salary" required>
+                    <label for="slary">Salary</label>
+                </div>
+                </div>
+                <div class="col">
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="employeeCode" name="EmployeeCode" placeholder="Employee Code" required>
+                    <label for="employeeCode">Employee Code</label>
+                </div>
+                </div>
+            </div>
+            <div class="mb-3">
+                <div class="form-floating">
+                    <select class="form-control" id="position" name="PositionId" required>
+                        <option value="">Select Position</option>
+                        @foreach (var position in Model.Positions)
+                        {
+                        <option value="@position.PositionId">@position.PositionName</option>
+                        }
+                    </select>
+                    <label for="position">Position</label>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col">
+                    <div class="form-floating">
+                        <input type="date" class="form-control" id="jobStartDate" name="JobStartDate" placeholder=" Start Date" required>
+                        <label for="jobStartDate">Job Start Date</label>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-floating">
+                        <input type="date" class="form-control" id="jobEndDate" name="JobEndDate" placeholder=" End Date">
+                        <label for="jobEndDate">Job End Date</label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-check custom-checkbox">
+                <input type="checkbox" class="form-check-input" id="isDisabled" name="IsDisable">
+                <label class="form-check-label" for="isDisabled">Is Disabled</label>
+            </div>
+            <input type="hidden" name="IsDisable" value="false">
+            
+            <button type="submit" class="btn btn-primary btn-lg w-100 mt-4">Add Employee</button>
+        </form>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.1.0/js/bootstrap.bundle.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#isDisabled').change(function () {
+            // Update the hidden field based on the checkbox state
+            $('input[name="IsDisable"]').val($(this).is(':checked'));
+        });
+    });
+</script>

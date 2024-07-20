@@ -1,0 +1,73 @@
+﻿@model EmployeeTask.Models.EditEmployeeJobHistoryModel;
+
+@{
+    ViewData["Title"] = "Edit Job History";
+}
+
+<style>
+    body {
+        background-color: #e3f2fd;
+    }
+
+    .form-container {
+        max-width: 300px;
+        margin: 0 auto;
+    }
+
+    .form-group {
+        margin-bottom: 1rem;
+    }
+
+        .form-group label {
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group select {
+            border-radius: .25rem;
+            border: 1px solid #ced4da;
+        }
+
+    .btn {
+        border-radius: .25rem;
+    }
+</style>
+
+<div class="form-container">
+    <h2 class="text-center">Edit Job History</h2>
+
+    <form asp-action="EditEmployeeJobHistory" method="post">
+        <input type="hidden" asp-for="EmployeeJobHistoryId" />
+
+        <div class="form-group">
+            <label asp-for="PositionId" class="control-label">Position</label>
+            <select asp-for="PositionId" class="form-control" asp-items="@(new SelectList(Model.Positions, "PositionId", "PositionName"))">
+                <option value="">Select Position</option>
+            </select>
+            <span asp-validation-for="PositionId" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="StartDate" class="control-label">Start Date</label>
+            <input asp-for="StartDate" class="form-control" type="date" />
+            <span asp-validation-for="StartDate" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="EndDate" class="control-label">End Date</label>
+            <input asp-for="EndDate" class="form-control" type="date" />
+            <span asp-validation-for="EndDate" class="text-danger"></span>
+        </div>
+
+        <div class="form-group d-flex justify-content-between">
+            <button type="submit" class="btn btn-primary">Save</button>
+            <a class="btn btn-secondary" href="@Url.Action("EmployeeHistory", new { id = ViewData["EmployeeId"] })">Cancel</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate-unobtrusive/3.2.11/jquery.validate.unobtrusive.min.js"></script>
+}

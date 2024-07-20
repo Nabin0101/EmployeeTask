@@ -1,0 +1,82 @@
+﻿@model IEnumerable<EmployeeTask.Models.Employee>
+@{
+    ViewData["Title"] = "Employees";
+}
+
+<style>
+    body {
+        background-color: #e3f2fd;
+    }
+
+    .action-buttons {
+        display: flex;
+        gap: 10px; 
+    }
+
+        .action-buttons a {
+            flex-shrink: 0; 
+            text-align: center;
+            margin-right: 0; 
+        }
+</style>
+
+<div class="d-flex justify-content-between mb-3">
+    <a class="btn btn-primary" href="@Url.Action("EmployeeForm")">Add Employee</a>
+</div>
+
+<table id="employeeTable" class="table table-striped table-bordered">
+    <thead class="table-dark">
+        <tr>
+            <th>Employee Code</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.EmployeeCode</td>
+                    <td>@item.People.FirstName</td>
+                    <td>@item.People.LastName</td>
+                    <td>@item.People.Email</td>
+                    <td>
+                        <div class="action-buttons">
+                            <a class="btn btn-info" href="@Url.Action("EditEmployee", new { id = item.EmployeeId })">Edit</a>
+                            <form asp-action="DeleteEmployee" method="post" style="display:inline;">
+                                <input type="hidden" name="id" value="@item.EmployeeId" />
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                            <a class="btn btn-secondary" href="@Url.Action("EmployeeHistory", new { id = item.EmployeeId })">History</a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="5" class="text-center">No employees found.</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#employeeTable').DataTable();
+        });
+
+
+    </script>
+
+ }
