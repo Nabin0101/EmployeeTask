@@ -1,6 +1,6 @@
-﻿@model EmployeeTask.Models.EmployeeFormViewModel
+﻿@model EmployeeTask.Models.LoginSignupModel
 @{
-    ViewData["Title"] = "Add Employee";
+    ViewData["Title"] = "Add User";
 }
 
 <style>
@@ -35,10 +35,6 @@
         border-radius: 0.5rem;
     }
 
-    .custom-checkbox {
-        margin-bottom: 10px;
-    }
-
     .btn-primary {
         background-color: #4956ac;
         border-color: #4956ac;
@@ -48,7 +44,7 @@
 <div class="container signup-container d-flex flex-row">
     <div class="col-md-6 signup-image d-none d-md-block"></div>
     <div class="col-md-6 signup-form">
-        <h2 class="text-center">Add Employee Form</h2>
+        <h2 class="text-center">Signup Form</h2>
         <form asp-action="EmployeeForm" method="post">
             <div class="row mb-3">
                 <div class="col">
@@ -59,17 +55,17 @@
                 </div>
                 <div class="col">
                     <div class="form-floating">
-                        <input type="text" class="form-control" id="middleName" name="MiddleName" placeholder="Middle Name" required>
-                        <label for="middleName">Middle Name</label>
+                        <input type="text" class="form-control" id="lastName" name="LastName" placeholder="Last Name" required>
+                        <label for="lastName">Last Name</label>
                     </div>
                 </div>
             </div>
             <div class="row mb-3">
                 <div class="col">
-                <div class="form-floating">
-                    <input type="text" class="form-control" id="lastName" name="LastName" placeholder="LastName" required>
-                    <label for="lastName">Last Name</label>
-                </div>
+                    <div class="form-floating">
+                        <input type="text" class="form-control" id="userName" name="UserName" placeholder="UserName" required>
+                        <label for="userName">Username</label>
+                    </div>
                 </div>
                 <div class="col">
                     <div class="form-floating">
@@ -87,51 +83,27 @@
             </div>
             <div class="row mb-3">
                 <div class="col">
-                <div class="form-floating">
-                    <input type="text" class="form-control" id="salary" name="Salary" placeholder="Salary" required>
-                    <label for="slary">Salary</label>
-                </div>
-                </div>
-                <div class="col">
-                <div class="form-floating">
-                    <input type="text" class="form-control" id="employeeCode" name="EmployeeCode" placeholder="Employee Code" required>
-                    <label for="employeeCode">Employee Code</label>
-                </div>
-                </div>
-            </div>
-            <div class="mb-3">
-                <div class="form-floating">
-                    <select class="form-control" id="position" name="PositionId" required>
-                        <option value="">Select Position</option>
-                        @foreach (var position in Model.Positions)
-                        {
-                        <option value="@position.PositionId">@position.PositionName</option>
-                        }
-                    </select>
-                    <label for="position">Position</label>
+                    <div class="form-floating">
+                        <input type="text" class="form-control" id="phone" name="Phone" placeholder="PhoneNumber" required>
+                        <label for="phone">Phone</label>
+                    </div>
                 </div>
             </div>
             <div class="row mb-3">
                 <div class="col">
                     <div class="form-floating">
-                        <input type="date" class="form-control" id="jobStartDate" name="JobStartDate" placeholder=" Start Date" required>
-                        <label for="jobStartDate">Job Start Date</label>
+                        <input type="password" class="form-control" id="password" name="Password" placeholder="Password" required>
+                        <label for="password">Password</label>
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-floating">
-                        <input type="date" class="form-control" id="jobEndDate" name="JobEndDate" placeholder=" End Date">
-                        <label for="jobEndDate">Job End Date</label>
+                        <input type="password" class="form-control" id="confirmPassword" name="ConfirmPassword" placeholder=" Confirm Password">
+                        <label for="confirmPassword">Confirm Password</label>
                     </div>
                 </div>
             </div>
-            <div class="form-check custom-checkbox">
-                <input type="checkbox" class="form-check-input" id="isDisabled" name="IsDisable">
-                <label class="form-check-label" for="isDisabled">Is Disabled</label>
-            </div>
-            <input type="hidden" name="IsDisable" value="false">
-            
-            <button type="submit" class="btn btn-primary btn-lg w-100 mt-4">Add Employee</button>
+            <button type="submit" class="btn btn-primary btn-lg w-100 mt-4">Submit</button>
         </form>
     </div>
 </div>

@@ -43,6 +43,6 @@ namespace EmployeeTask.Models
             
             public bool IsDisable { get; set; }
 
-            public List<Positions> Positions { get; set; }
+            public List<Positions> Positions { get; set; }  
         }
     }
